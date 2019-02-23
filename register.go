@@ -100,7 +100,7 @@ func registerSubmit(c *gin.Context) {
 	for errr.Next() {
 		i++
 	}
-	if errr == 0 {
+	if i == 0 {
 		registerResp(c, errorMessage{T(c, "Invalid Beta Key.")})
 		return
 	}
