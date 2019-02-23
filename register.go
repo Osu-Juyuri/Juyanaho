@@ -96,7 +96,7 @@ func registerSubmit(c *gin.Context) {
 	
 	errr := db.QueryRow("SELECT id FROM beta_keys WHERE key_md5 = ? AND allowed = 1", cmd5(c.PostForm("key")))
 	fmt.Printf("%v", errr)
-	if err.Scan(new(int)) == sql.ErrNoRows {
+	if errr.Scan(new(int)) == sql.ErrNoRows {
 		registerResp(c, errorMessage{T(c, "key bad.")})
 		return
 	}
