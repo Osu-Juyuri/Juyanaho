@@ -17,7 +17,7 @@ TitleBar=About
 			{{ $scoreCount := qb "SELECT COUNT(*) as Count FROM scores" }}
 			{{ $scoreCountRx := qb "SELECT COUNT(*) as Count FROM scores_relax" }}
 			{{ $scoreCountAp := qb "SELECT COUNT(*) as Count FROM scores_auto" }}
-			<p>With {{ .T "%s Vanilla Scores, %s Relax Scores, %s Autopilot Scores and %s Registered Players (With %s people online currently!) you'd be crazy not to play!" $scoreCount $scoreCountRx $scoreCountAp (rediget "ripple:online_users") (rediget "ripple:registered_users") | html}}</p>
+			<p>With {{ .T "%s Vanilla Scores, %s Relax Scores, %s Autopilot Scores and %s Registered Players (With %s people online currently!) you'd be crazy not to play!" $scoreCount.Count $scoreCountRx.Count $scoreCountAp.Count (rediget "ripple:online_users") (rediget "ripple:registered_users") | html}}</p>
 		</div>
 	</div>
 </div>
