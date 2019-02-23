@@ -87,7 +87,7 @@
 		</div>
 
 		<div class="footer">
-			{{ .T "Yozora, using Hanayo %s." (curryear) (version) | html }}
+			{{ .T "Yozora, using Hanayo %v." (version) | html }}
 			<a href="/team" title="{{ .T "Who is working on this thing?" }}"><i class="users icon"></i>{{ .T "Team" }}</a> |
 			<div class="ui scrolling dropdown" style="margin-left: 5px;" id="language-selector">
 				{{ $lang := .Context.Language }}
