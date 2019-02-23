@@ -94,8 +94,7 @@ func registerSubmit(c *gin.Context) {
 		return
 	}
 	fmt.Printf("%s", cmd5(c.PostForm("key")))
-	if db.QueryRow("SELECT 1 FROM beta_keys WHERE key_md5 = ? AND allowed = 1", cmd5(c.PostForm("key"))).
-		Scan(new(int)) != sql.ErrNoRows {
+	if db.QueryRow("SELECT 1 FROM beta_keys WHERE key_md5 = ? AND allowed = 1", cmd5(c.PostForm("key"))) == sql.ErrNoRows {
 		registerResp(c, errorMessage{T(c, "Invalid Beta Key.")})
 		return
 	}
