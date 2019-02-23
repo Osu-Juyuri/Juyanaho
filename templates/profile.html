@@ -17,11 +17,11 @@
 			{{ $alicia  := has .id 1000 }}
 			{{ $catherine  := has .id 999 }}
 			
-			{{ $super := has .privileges 15728639 }}
+			{{ $super := has .privileges 7340031 }}
 			{{ $dev  := has .privileges 11534335 }}
 			{{ $donor := has .privileges 7 }}
-			{{ $admin  := has .privileges 7262715 }}
-			{{ $chatmod  := has .privileges 786499 }}
+			{{ $admin  := has .privileges 3049983 }}
+			{{ $chatmod  := has .privileges 786763 }}
 			{{ $bn  := has .privileges 267 }}
 
 			{{ if hasAdmin $global.Context.User.Privileges }}
@@ -66,7 +66,7 @@
 							<div class="owner">
 								{{ .username }}
 							</div>
-							{{else if $dev}}
+							{{else if $donor}}
 							<div class="dev">
 								{{ .username }}
 							</div>
