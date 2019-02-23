@@ -48,7 +48,7 @@ func profBackground(c *gin.Context) {
 			return
 		}
 		img = resize.Thumbnail(2496, 1404, img, resize.Bilinear)
-		f, err := os.Create(fmt.Sprintf("static/profbackgrounds/%d.png", ctx.User.ID))
+		f, err := os.Create(fmt.Sprintf("static/profbackgrounds/%d.jpg", ctx.User.ID))
 		defer f.Close()
 		if err != nil {
 			m = errorMessage{T(c, "An error occurred.")}
@@ -63,7 +63,7 @@ func profBackground(c *gin.Context) {
 			c.Error(err)
 			return
 		}
-		saveProfileBackground(ctx, 1, fmt.Sprintf("%d.png?%d", ctx.User.ID, time.Now().Unix()))
+		saveProfileBackground(ctx, 1, fmt.Sprintf("%d.jpg?%d", ctx.User.ID, time.Now().Unix()))
 	case "2":
 		// solid colour
 		col := strings.ToLower(c.PostForm("value"))
@@ -73,35 +73,6 @@ func profBackground(c *gin.Context) {
 			return
 		}
 		saveProfileBackground(ctx, 2, col)
-	case "3":
-				// image
-				file, _, err := c.Request.FormFile("value")
-				if err != nil {
-					m = errorMessage{T(c, "An error occurred.")}
-					return
-				}
-				img, _, err := image.Decode(file)
-				if err != nil {
-					m = errorMessage{T(c, "An error occurred.")}
-					return
-				}
-				img = resize.Thumbnail(2496, 1404, img, resize.Bilinear)
-				f, err := os.Create(fmt.Sprintf("static/profbackgrounds/%d.gif", ctx.User.ID))
-				defer f.Close()
-				if err != nil {
-					m = errorMessage{T(c, "An error occurred.")}
-					c.Error(err)
-					return
-				}
-				err = jpeg.Encode(f, img, &jpeg.Options{
-					Quality: 88,
-				})
-				if err != nil {
-					m = errorMessage{T(c, "We were not able to save your profile background.")}
-					c.Error(err)
-					return
-				}
-				saveProfileBackground(ctx, 1, fmt.Sprintf("%d.gif?%d", ctx.User.ID, time.Now().Unix()))
 	}
 }
 
