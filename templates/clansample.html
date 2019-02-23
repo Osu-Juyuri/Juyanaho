@@ -117,7 +117,7 @@ Include=clanmembers.html
                     <p>
                         {{ .T "The leader of the clan." }}<br>
                     </p>
-                    {{ template "clanMembers" (.Get "clans/members?id=%d&r=%d" .ClanID 8) }}
+                    {{ template "clan_members" (.Get "clans/members?id=%d&r=%d" .ClanID 8) }}
                 </div>
             </div>
         </div>
@@ -126,7 +126,7 @@ Include=clanmembers.html
             <p>
                 {{ .T "The members of the clan." }}<br>
             </p>
-            {{ template "clanMembers" (.Get "clans/members?id=%d&r=%d" .ClanID 1) }}
+            {{ template "clan_members" (.Get "clans/members?id=%d&r=%d" .ClanID 1) }}
         </div>
     </div>
     {{ end }}
