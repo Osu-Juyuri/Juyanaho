@@ -24,7 +24,7 @@ AdditionalJS=https://cdnjs.cloudflare.com/ajax/libs/jquery-minicolors/2.2.4/jque
 					</select>
 				</p>
 				<div class="ui compact segment" id="image-background" style="margin: 0 auto; max-width: 400px; max-height: 700px;" data-type="1"{{ if ne $type 1 }} hidden{{ end }}>
-					{{ if and (eq $type 1) $value }}
+					{{ if and (eq $type 1 || eq $type 3) $value }}
 						<img src="/static/profbackgrounds/{{ $value }}">
 					{{ else }}
 						No image selected
@@ -67,7 +67,7 @@ AdditionalJS=https://cdnjs.cloudflare.com/ajax/libs/jquery-minicolors/2.2.4/jque
 						</button>
 					</p>
 				</form>
-				<form action="/settings/profbackground/3" method="post" enctype="multipart/form-data" class="little top margin ui form" data-type="1"{{ if ne $type 3 }} hidden{{ end }}>
+				<form action="/settings/profbackground/3" method="post" enctype="multipart/form-data" class="little top margin ui form" data-type="3"{{ if ne $type 3 }} hidden{{ end }}>
 					{{ $csrf }}
 					<div class="ui buttons">
 						<label for="file" class="ui green labeled icon button">
