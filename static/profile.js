@@ -227,7 +227,12 @@ function loadScoresPage(type, mode) {
 		}
 		r.scores.forEach(function(v, idx){
 			scoreStore[v.id] = v;
-			var scoreRank = getRank(mode, v.mods, v.accuracy, v.count_300, v.count_100, v.count_50, v.count_miss);
+			if (v.completed == 0){
+				var scoreRank = "failed";
+			}else{
+				var scoreRank = getRank(mode, v.mods, v.accuracy, v.count_300, v.count_100, v.count_50, v.count_miss);
+			}
+		
 			table.append($("<tr class='new score-row' data-scoreid='" + v.id + "' />").append(
 				$(
 					"<td><img src='/static/ranking-icons/" + scoreRank + ".svg' class='score rank' alt='" + scoreRank + "'> " +
