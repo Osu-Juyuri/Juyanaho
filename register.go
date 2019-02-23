@@ -94,12 +94,10 @@ func registerSubmit(c *gin.Context) {
 		return
 	}
 	fmt.Printf("%s", cmd5(c.PostForm("key")))
-	if db.QueryRow("SELECT 1 FROM beta_keys WHERE key_md5 = ? AND allowed = 1", cmd5(c.PostForm("key"))) == sql.ErrNoRows {
-		registerResp(c, errorMessage{T(c, "Invalid Beta Key.")})
-		return
-	}
+	errr := db.QueryRow("SELECT 1 FROM beta_keys WHERE key_md5 = ? AND allowed = 1", cmd5(c.PostForm("key")))
 
-	uMulti, criteria := tryBotnets(c)
+	if errr != nil {
+		uMulti, criteria := tryBotnets(c)
 	if criteria != "" {
 		schiavo.CMs.Send(
 			fmt.Sprintf(
@@ -138,6 +136,12 @@ func registerSubmit(c *gin.Context) {
 	addMessage(c, successMessage{T(c, "You have been successfully registered on Ripple! You now need to verify your account.")})
 	getSession(c).Save()
 	c.Redirect(302, "/register/verify?u="+strconv.Itoa(int(lid)))
+	} else {
+		registerResp(c, errorMessage{T(c, "Invalid Beta Key.")})
+
+	}
+
+	
 }
 
 func registerResp(c *gin.Context, messages ...message) {
