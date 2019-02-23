@@ -37,6 +37,7 @@
 			<div class="ui dropdown item">
 				<span>{{ .T "Beatmaps" }}</span>
 				<div class="menu">
+						{{ navbarItem .Path (.T "Listing") "/beatmaps" }}
 					{{ navbarItem .Path (.T "Request beatmap ranking") "/beatmaps/rank_request" }}
 				</div>
 			</div>
