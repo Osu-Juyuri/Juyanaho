@@ -235,7 +235,7 @@ function loadScoresPage(type, mode) {
 		
 			table.append($("<tr class='new score-row' data-scoreid='" + v.id + "' />").append(
 				$(
-					"<td><img src='/static/ranking-icons/" + scoreRank + ".svg' class='score rank' alt='" + scoreRank + "'> " +
+					"<td><img src='/static/ranking-icons/" + scoreRank + ".png'  class='score rank' alt='" + scoreRank + "' height='16' width='16' > " +
 					escapeHTML(v.beatmap.song_name) + " <b>" + getScoreMods(v.mods) + "</b> <i>(" + v.accuracy.toFixed(2) + "%)</i><br />" +
 					"<div class='subtitle'><time class='new timeago' datetime='" + v.time + "'>" + v.time + "</time></div></td>"
 				),
