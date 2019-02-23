@@ -20,7 +20,7 @@ AdditionalJS=https://cdnjs.cloudflare.com/ajax/libs/jquery-minicolors/2.2.4/jque
 						<option value="0">{{ .T "None" }}</option>
 						<option value="1"{{ if eq $type 1 }} selected{{ end }}>{{ .T "Image" }}</option>
 						<option value="2"{{ if eq $type 2 }} selected{{ end }}>{{ .T "Solid colour" }}</option>
-						<option value="3"{{ if eq $type 2 }} selected{{ end }}>{{ .T "GIF Image (animated)" }}</option>
+						<option value="3"{{ if eq $type 3 }} selected{{ end }}>{{ .T "GIF Image (animated)" }}</option>
 					</select>
 				</p>
 				<div class="ui compact segment" id="image-background" style="margin: 0 auto; max-width: 400px; max-height: 700px;" data-type="1"{{ if ne $type 1 }} hidden{{ end }}>
