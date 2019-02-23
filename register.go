@@ -132,7 +132,7 @@ func registerSubmit(c *gin.Context) {
 
 	setYCookie(int(lid), c)
 	logIP(c, int(lid))
-	db.Exec("UPDATE beta_keys SET allowed = 0 WHERE key_md5 = ?", cmd5(c.PostForm("key"))
+	db.Exec("UPDATE beta_keys SET allowed = 0 WHERE key_md5 = ?", cmd5(c.PostForm("key")))
 
 	rd.Incr("ripple:registered_users")
 
