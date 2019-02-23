@@ -13,7 +13,7 @@
 				<div class="ui error centered message">{{ $global.T "User is <b>silenced</b> for %s, expires %s." (.silence_info.reason | htmlescaper) (time .silence_info.end) | html }}</div>
 			{{ end }}
 
-			{{ $sarag  := has .id 1193 }}
+			{{ $sarah  := has .id 1193 }}
 			{{ $alicia  := has .id 1000 }}
 			{{ $catherine  := has .id 999 }}
 			
