@@ -3,12 +3,11 @@ Include=cmembers.html
  */}}
 {{ define "tpl" }}
 <div class="ui container">
-
-    {{ if .ClanID }}
-    {{ $gqm := .Gin.Query "mode" }}
-    {{ $global := . }}
-    {{ $favouritemode := $gqm }}
-    {{ range (.Get "clans?id=%d" .ClanID).clans }}
+{{ if .ClanID }}
+{{ $gqm := .Gin.Query "mode" }}
+{{ $global := . }}
+{{ $favouritemode := $gqm }}
+{{ range (.Get "clans?id=%d" .ClanID).clans }}
     <div class="ui top attached segment overflow auto aligned">
         <div class="magic table">
             {{ if .icon }}
