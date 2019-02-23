@@ -24,6 +24,24 @@
 		padding-bottom: 10px;
 	}
 }
+.owner
+{
+    -webkit-animation: rainbow 2s infinite;
+    -ms-animation: rainbow 2s infinite;
+    animation: rainbow 2s infinite;
+
+}
+
+.dev
+{
+	color: SpringGreen;
+    text-shadow:
+    -1px -1px 0 #006400,
+    1px -1px 0 #006400,
+    -1px 1px 0 #006400,
+    1px 1px 0 #006400;
+
+}
 @media (min-width: 700px) {
 	.huge.heading {
 		height: 175px;
