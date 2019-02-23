@@ -94,9 +94,8 @@ func registerSubmit(c *gin.Context) {
 		return
 	}
 	
-	errr := db.Query("SELECT 1 FROM beta_keys WHERE key_md5 = ? AND allowed = 1", cmd5(c.PostForm("key")))
+	errr := db.QueryRow("SELECT id FROM beta_keys WHERE key_md5 = ? AND allowed = 1", cmd5(c.PostForm("key")))
 	fmt.Printf("%v", errr)
-	i = 0
 	for errr.Next() {
 		i++
 	}
