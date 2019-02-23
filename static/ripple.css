@@ -125,10 +125,10 @@ a.inherit:hover {
 }
 
 .white.background {
-	background-color: #FFF !important;
+	background-color: #454545 !important;
 }
 body.ds .white.background {
-	background-color: #454545 !important;
+	background-color: #FFF !important;
 }
 
 .user.avatar {
@@ -172,18 +172,18 @@ body.ds .white.background {
 }
 
 .subtitle, .about.title {
-	color: rgba(0,0,0,.6);
+	color: rgba(255,255,255,.8);
 }
 .subtitle b {
-	color: rgba(0,0,0,.87);
+	color: rgba(255,255,255,.8);
 }
 
 /* ds = Dark Site */
 body.ds .subtitle, body.ds .about.title {
-	color: rgba(255,255,255,.8);
+	color: rgba(0,0,0,.6);
 }
 body.ds .subtitle b {
-	color: rgba(255,255,255,.94);
+	color: rgba(0,0,0,.87);
 }
 
 .little.margin.top {
