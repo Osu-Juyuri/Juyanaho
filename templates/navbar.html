@@ -41,6 +41,12 @@
 					{{ navbarItem .Path (.T "Request beatmap ranking") "/beatmaps/rank_request" }}
 				</div>
 			</div>
+			<div class="ui dropdown item">
+					<span>{{ .T "Clans" }}</span>
+						<div class="menu">
+							{{ navbarItem .Path (.T "Create Clan") "/clans/create" }}
+						</div>
+				</div>
 			{{ else }}
 			<div class="ui dropdown item">
 				<span>{{ .T "Beatmaps" }}</span>
@@ -50,7 +56,7 @@
 			</div>
 			{{ end }}
 			{{ navbarItem .Path (.T "Donate" | printf "<i class=\"red heart icon\"></i>%s") "/donate" }}
-			{{ if $isAdmin }}{{ navbarItem .Path (.T "RAP" | printf "<b>%s</b>") "https://old.yozora.pw/p/100" }}{{ end }}
+			{{ if $isAdmin }}{{ navbarItem .Path (.T "Admin" | printf "<b>%s</b>") "https://old.yozora.pw/p/100" }}{{ end }}
 		{{ end }}
 		<div class="firetrucking-right-menu">
 			<div class="item">
