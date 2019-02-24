@@ -3,7 +3,7 @@
 	{{ if .UserID }}
 		{{ $gqm := atoi (.Gin.Query "mode") }}
 		{{ $global := . }}
-		{{ with (.Get "users/full?id=%d" .UserID) }}
+		{{ with (.Get "users/ap/full?id=%d" .UserID) }}
 			{{ $favouritemode := _or $gqm .favourite_mode }}
 			<script>
 				window.favouriteMode = {{ $favouritemode }};
