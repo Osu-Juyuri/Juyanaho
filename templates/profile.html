@@ -62,6 +62,8 @@
 					</div>
 					<div class="table element">
 						<h1 class="ui header">
+							{{ $user := . }}
+							<td class="right aligned"><a href="/c/{{ $user.clan.id }}?mode=0">[{{ $user.clan.tag }}] </a></td>
 							{{ if $super }}
 							<div class="owner">
 								{{ .username }}
