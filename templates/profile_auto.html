@@ -62,17 +62,27 @@
 					</div>
 					<div class="table element">
 						<h1 class="ui header">
-							{{ if $super }}
-							<div class="owner">
+								{{ if $super }}
+								<div class="owner">
+								{{ if $user.clan}}
+									<td class="right aligned"><a href="/c/{{ $user.clan.id }}?mode=0">[{{ $user.clan.tag }}]</a></td>
+								{{ end }}
+								
 								{{ .username }}
-							</div>
-							{{else if $donor}}
-							<div class="dev">
-								{{ .username }}
-							</div>
-							{{ else }}
-								{{ .username }}
-							{{ end }}
+								</div>
+								{{else if $donor}}
+								<div class="dev">
+								{{ if $user.clan}}
+										<td class="right aligned"><a href="/c/{{ $user.clan.id }}?mode=0">[{{ $user.clan.tag }}]</a></td>
+								{{ end }}
+									{{ .username }}
+								</div>
+								{{ else }}
+								{{ if $user.clan}}
+									<td class="right aligned"><a href="/c/{{ $user.clan.id }}?mode=0">[{{ $user.clan.tag }} ]</a></td>
+								{{ end }}
+									{{ .username }}
+								{{ end }}
 						</h1>
 						{{ if .username_aka }}
 							<div class="subtitle">

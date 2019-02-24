@@ -63,18 +63,26 @@
 					<div class="table element">
 						<h1 class="ui header">
 							{{ $user := . }}
-							{{ if $user.clan}}
-								<td class="right aligned"><a href="/c/{{ $user.clan.id }}?mode=0">{{ $user.clan.tag }} </a></td>
-							{{ end }}
+							
 							{{ if $super }}
 							<div class="owner">
-								{{ .username }}
+							{{ if $user.clan}}
+								<td class="right aligned"><a href="/c/{{ $user.clan.id }}?mode=0">[{{ $user.clan.tag }}]</a></td>
+							{{ end }}
+							
+							{{ .username }}
 							</div>
 							{{else if $donor}}
 							<div class="dev">
+							{{ if $user.clan}}
+									<td class="right aligned"><a href="/c/{{ $user.clan.id }}?mode=0">[{{ $user.clan.tag }}]</a></td>
+							{{ end }}
 								{{ .username }}
 							</div>
 							{{ else }}
+							{{ if $user.clan}}
+								<td class="right aligned"><a href="/c/{{ $user.clan.id }}?mode=0">[{{ $user.clan.tag }} ]</a></td>
+							{{ end }}
 								{{ .username }}
 							{{ end }}
 						</h1>
