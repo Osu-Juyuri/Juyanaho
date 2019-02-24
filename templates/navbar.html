@@ -41,6 +41,13 @@
 					{{ navbarItem .Path (.T "Request beatmap ranking") "/beatmaps/rank_request" }}
 				</div>
 			</div>
+			{{ else }}
+			<div class="ui dropdown item">
+				<span>{{ .T "Beatmaps" }}</span>
+				<div class="menu">
+						{{ navbarItem .Path (.T "Listing") "/beatmaps" }} }}
+				</div>
+			</div>
 			{{ end }}
 			{{ navbarItem .Path (.T "Donate" | printf "<i class=\"red heart icon\"></i>%s") "/donate" }}
 			{{ if $isAdmin }}{{ navbarItem .Path (.T "RAP" | printf "<b>%s</b>") "https://old.yozora.pw/p/100" }}{{ end }}
