@@ -331,10 +331,6 @@ func generateEngine() *gin.Engine {
 
 	r.Any("/blog/*url", blogRedirect)
 
-	r.GET("/help", func(c *gin.Context) {
-		c.Redirect(301, "https://support.ripple.moe")
-	})
-
 	loadSimplePages(r)
 
 	r.NoRoute(notFound)
