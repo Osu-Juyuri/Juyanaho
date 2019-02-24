@@ -65,7 +65,7 @@
 								{{ $user := . }}
 								{{ if $super }}
 								<div class="owner">
-								{{ if $user.clan}}
+								{{ if $user.clan.tag }}
 									<td class="right aligned"><a href="/c/{{ $user.clan.id }}?mode=0">[{{ $user.clan.tag }}]</a></td>
 								{{ end }}
 								
@@ -73,13 +73,13 @@
 								</div>
 								{{else if $donor}}
 								<div class="dev">
-								{{ if $user.clan}}
+								{{ if $user.clan.tag}}
 										<td class="right aligned"><a href="/c/{{ $user.clan.id }}?mode=0">[{{ $user.clan.tag }}]</a></td>
 								{{ end }}
 									{{ .username }}
 								</div>
 								{{ else }}
-								{{ if $user.clan}}
+								{{ if $user.clan.tag}}
 									<td class="right aligned"><a href="/c/{{ $user.clan.id }}?mode=0">[{{ $user.clan.tag }} ]</a></td>
 								{{ end }}
 									{{ .username }}
