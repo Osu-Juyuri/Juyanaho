@@ -325,6 +325,8 @@ func generateEngine() *gin.Engine {
 	r.GET("/oauth/token", oauth.Token)
 	r.POST("/oauth/token", oauth.Token)
 
+	r.GET("/clans/invite/:inv", clanInvite)
+
 	r.GET("/donate/rates", btcconversions.GetRates)
 
 	r.Any("/blog/*url", blogRedirect)
