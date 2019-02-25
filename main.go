@@ -278,7 +278,13 @@ func generateEngine() *gin.Engine {
 	r.GET("/register/verify", verifyAccount)
 	r.GET("/register/welcome", welcome)
 
+	r.GET("/clans/create", ccreate)
+	r.POST("/clans/create", ccreateSubmit)
+	r.GET("/c/:cid", clanPage)
+
 	r.GET("/u/:user", userProfile)
+	r.GET("/rx/u/:user", relaxProfile)
+	r.GET("/ap/u/:user", autoProfile)
 	r.GET("/b/:bid", beatmapInfo)
 
 	r.POST("/pwreset", passwordReset)
@@ -303,6 +309,8 @@ func generateEngine() *gin.Engine {
 	r.POST("/settings/2fa/totp", totpSetup)
 	r.GET("/settings/discord/finish", discordFinish)
 	r.POST("/settings/profbackground/:type", profBackground)
+	r.POST("/settings/clansettings", createInvite)
+	r.POST("settings/clansettings/k", clanKick)
 
 	r.POST("/dev/tokens/create", createAPIToken)
 	r.POST("/dev/tokens/delete", deleteAPIToken)
@@ -317,13 +325,11 @@ func generateEngine() *gin.Engine {
 	r.GET("/oauth/token", oauth.Token)
 	r.POST("/oauth/token", oauth.Token)
 
+	r.GET("/clans/invite/:inv", clanInvite)
+
 	r.GET("/donate/rates", btcconversions.GetRates)
 
 	r.Any("/blog/*url", blogRedirect)
-
-	r.GET("/help", func(c *gin.Context) {
-		c.Redirect(301, "https://support.ripple.moe")
-	})
 
 	loadSimplePages(r)
 

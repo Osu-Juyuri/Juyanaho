@@ -190,7 +190,7 @@ func blogRedirect(c *gin.Context) {
 	a := c.Param("url")
 	red := blogRedirectMap[a]
 	if red == "" {
-		red = "https://blog.ripple.moe"
+		red = "https://medium.com/@yozora"
 	}
 	c.Redirect(301, red)
 }

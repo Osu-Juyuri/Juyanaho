@@ -3,7 +3,7 @@
 	{{ if .UserID }}
 		{{ $gqm := atoi (.Gin.Query "mode") }}
 		{{ $global := . }}
-		{{ with (.Get "users/full?id=%d" .UserID) }}
+		{{ with (.Get "users/ap/full?id=%d" .UserID) }}
 			{{ $favouritemode := _or $gqm .favourite_mode }}
 			<script>
 				window.favouriteMode = {{ $favouritemode }};
@@ -62,29 +62,28 @@
 					</div>
 					<div class="table element">
 						<h1 class="ui header">
-							{{ $user := . }}
-							
-							{{ if $super }}
-							<div class="owner">
-							{{ if $user.clan.tag}}
-								<td class="right aligned"><a href="/c/{{ $user.clan.id }}?mode=0">[{{ $user.clan.tag }}]</a></td>
-							{{ end }}
-							
-							{{ .username }}
-							</div>
-							{{else if $donor}}
-							<div class="dev">
-							{{ if $user.clan.tag}}
+								{{ $user := . }}
+								{{ if $super }}
+								<div class="owner">
+								{{ if $user.clan.tag }}
 									<td class="right aligned"><a href="/c/{{ $user.clan.id }}?mode=0">[{{ $user.clan.tag }}]</a></td>
-							{{ end }}
+								{{ end }}
+								
 								{{ .username }}
-							</div>
-							{{ else }}
-							{{ if $user.clan.tag}}
-								<td class="right aligned"><a href="/c/{{ $user.clan.id }}?mode=0">[{{ $user.clan.tag }}]</a></td>
-							{{ end }}
-								{{ .username }}
-							{{ end }}
+								</div>
+								{{else if $donor}}
+								<div class="dev">
+								{{ if $user.clan.tag}}
+										<td class="right aligned"><a href="/c/{{ $user.clan.id }}?mode=0">[{{ $user.clan.tag }}]</a></td>
+								{{ end }}
+									{{ .username }}
+								</div>
+								{{ else }}
+								{{ if $user.clan.tag}}
+									<td class="right aligned"><a href="/c/{{ $user.clan.id }}?mode=0">[{{ $user.clan.tag }}]</a></td>
+								{{ end }}
+									{{ .username }}
+								{{ end }}
 						</h1>
 						{{ if .username_aka }}
 							<div class="subtitle">
@@ -126,8 +125,8 @@
 					</div>
 				</div>
 			</div>
-			{{ $user := . }}
-			<div class="ui three item bottom attached menu" id="rx-menu">
+            {{ $user := . }}
+            <div class="ui three item bottom attached menu" id="rx-menu">
                 <a class="0 item" data-rx="0" href="/u/{{ $user.id }}">Vanilla</a>
                 <a class="1 item" data-rx="1" href="/rx/u/{{ $user.id }}">Relax</a>
                 <a class="1 item" data-rx="2" href="/ap/u/{{ $user.id }}">AutoPilot</a>
@@ -258,6 +257,16 @@
 				{{ end }}
 			</div>
 
+			<div class="ui segment">
+				<h2 class="ui header">{{ $global.T "Achievements" }}</h2>
+				<div id="achievements" class="ui grid">
+				</div>
+				<div class="right aligned">
+					<button class="ui disabled button" id="load-more-achievements">
+						{{ $global.T "Load more" }}
+					</button>
+				</div>
+			</div>
 			<div class="ui modal">
 				<i class="close icon"></i>
 				<div class="content">
