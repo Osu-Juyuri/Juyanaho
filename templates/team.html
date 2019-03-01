@@ -11,27 +11,27 @@ KyutGrill=team2.jpg
 			<h3>{{ .T "This is a list of the wonderful people who keep Yozora up and running and deal with its community." }}</h3>
 		</div>
 		<div class="ui center aligned segment">
+			<h1 class="ui heading">{{ .T "Owners" }}</h1>
+			<p>
+				{{ .T "Alicia/Sarah are the owners that adds new features to the server, squash bugs, keep the server up and running and take care of its maintenance.}}
+				{{ .T "They try to listen to the community. You know it is us because we have a blue name in-game."" }}
+			</p>
+			{{ template "userGroup" (.Get "badges/members?id=%d" 2) }}
+		</div>
+		<div class="ui center aligned segment">
 			<h1 class="ui heading">{{ .T "Community Managers" }}</h1>
 			<p>
 				{{ .T "Community Managers deal with bans, silences, name changes and pretty much everything that has to do with the community." }}<br>
 				{{ .T "They take care of our Discord server and reply to emails sent to the support services (email and support@yozora.pw). Community Managers have a red name in the in-game chat." | html }}
 			</p>
-			{{ template "userGroup" (.Get "badges/members?id=%d" 4) }}
-		</div>
-		<div class="ui center aligned segment">
-			<h1 class="ui heading">{{ .T "Developers" }}</h1>
-			<p>
-				{{ .T "Developers add new features to the server, squash bugs, keep the server up and running and take care of its maintenance." }}<br>
-				{{ .T "They don't do anything related to the community. Developers have a blue name in the in-game chat." }}
-			</p>
-			{{ template "userGroup" (.Get "badges/members?id=%d" 2) }}
+			{{ template "userGroup" (.Get "badges/members?id=%d" 10) }}
 		</div>
 		<div class="ui center aligned segment">
 			<h1 class="ui heading">{{ .T "Chat Moderators" }}</h1>
 			<p>
 				{{ .T "Chat moderators manage the chat to make sure The Law&trade; (the rules) is respected." | html }}
 			</p>
-			{{ template "userGroup" (.Get "badges/members?id=%d" 30) }}
+			{{ template "userGroup" (.Get "badges/members?id=%d" 4) }}
 		</div>
 		<div class="ui center aligned segment">
 			<h1 class="ui heading">{{ .T "BATs" }}</h1>
