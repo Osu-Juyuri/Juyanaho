@@ -39,6 +39,8 @@ $(document).ready(function() {
 		});
 });
 
+
+/*
 function initialiseAchievements() {
 	api('users/achievements' + (currentUserID == userID ? '?all' : ''),
 		{id: userID}, function (resp) {
@@ -101,7 +103,7 @@ function initialiseAchievements() {
 		displayAchievements(8, true);
 	});
 }
-
+*/
 function initialiseFriends() {
 	var b = $("#add-friend-button");
 	if (b.length == 0) return;
