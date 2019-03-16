@@ -94,12 +94,6 @@ func registerSubmit(c *gin.Context) {
 		return
 	}
 	
-	errr := db.QueryRow("SELECT id FROM beta_keys WHERE key_md5 = ? AND allowed = 1", cmd5(c.PostForm("key")))
-	if errr.Scan(new(int)) == sql.ErrNoRows {
-		registerResp(c, errorMessage{T(c, "Your Invitation Code is invalid. Please use the form below to obtain one.")})
-		return
-	}
-
 	uMulti, criteria := tryBotnets(c)
 	if criteria != "" {
 		schiavo.CMs.Send(
@@ -132,7 +126,6 @@ func registerSubmit(c *gin.Context) {
 
 	setYCookie(int(lid), c)
 	logIP(c, int(lid))
-	db.Exec("UPDATE beta_keys SET allowed = 0 WHERE key_md5 = ?", cmd5(c.PostForm("key")))
 
 	rd.Incr("ripple:registered_users")
 
