@@ -37,11 +37,6 @@
 						<input tabindex="3" type="email" name="email" placeholder="{{ .T "Email" }}"
 							value="{{ .FormData.email }}" required>
 					</div>
-					<div class="field">
-						<label>{{ .T "Registration Key" }}</label>
-						<input tabindex="3" type="text" name="key" placeholder="{{ .T "Key" }}"
-							value="{{ .FormData.key }}" required>
-					</div>
 					{{ with config "RecaptchaSite" }}
 					<div class="field">
 						<div class="g-recaptcha" data-sitekey="{{ . }}"></div>
