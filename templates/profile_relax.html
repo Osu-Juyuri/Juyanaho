@@ -16,7 +16,7 @@
 			{{ $sarah  := has .id 1193 }}
 			{{ $alicia  := has .id 1000 }}
 			{{ $catherine  := has .id 999 }}
-			
+
 			{{ $super := has .privileges 7340031 }}
 			{{ $dev  := has .privileges 11534335 }}
 			{{ $donor := has .privileges 7 }}
@@ -68,7 +68,7 @@
 								{{ if $user.clan.tag}}
 									<td class="right aligned"><a href="/c/{{ $user.clan.id }}?mode=0">[{{ $user.clan.tag }}]</a></td>
 								{{ end }}
-								
+
 								{{ .username }}
 								</div>
 								{{else if $donor}}
@@ -116,7 +116,7 @@
 								</a>
 							{{ end }}
 							{{ if hasAdmin $global.Context.User.Privileges }}
-								<a href="https://old.yozora.pw/index.php?p=103&id={{ $global.UserID }}"
+								<a href="https://old.Juyuri.pw/index.php?p=103&id={{ $global.UserID }}"
 									target="_blank" title="Quick edit" class="ui circular mini blue icon button">
 									<i class="folder open outline icon"></i>
 								</a>
@@ -142,33 +142,33 @@
 						<div class="column">
 								{{if $super }}
 								{{ $global.T "<b >%s</b> " .username | html }}
-								 is an <i class="pink code small icon"></i><b>Owner</b> 
+								 is an <i class="pink code small icon"></i><b>Owner</b>
 								{{ $global.T " from <b>%s</b>." (country .country true) | html }}
 								{{else if $dev}}
 								{{ $global.T "<b>%s</b> " .username | html }}
-								 is a <i class="blue code small icon"></i><b>Developer</b> 
+								 is a <i class="blue code small icon"></i><b>Developer</b>
 								{{ $global.T " from <b>%s</b>." (country .country true) | html }}
 								{{else if $admin}}
 								{{ $global.T "<b>%s</b> " .username | html }}
-								 is an <i class="red lightning small icon"></i><b>Administrator</b> 
+								 is an <i class="red lightning small icon"></i><b>Administrator</b>
 								{{ $global.T " from <b>%s</b>." (country .country true) | html }}
 								{{else if $chatmod}}
 								{{ $global.T "<b>%s</b> " .username | html }}
-								 is a <i class="blue star small icon"></i><b>Chat Mod</b> 
+								 is a <i class="blue star small icon"></i><b>Chat Mod</b>
 								{{ $global.T " from <b>%s</b>." (country .country true) | html }}
 								{{else if $bn}}
 								{{ $global.T "<b>%s</b> " .username | html }}
-								 is a <i class="orange universal access small icon"></i><b>Nominator</b> 
+								 is a <i class="orange universal access small icon"></i><b>Nominator</b>
 								{{ $global.T " from <b>%s</b>." (country .country true) | html }}
 								{{else if $donor }}
 								{{ $global.T "<b>%s</b> " .username | html }}
-								 is a <i class="pink heart small icon"></i><b>Supporter</b> 
+								 is a <i class="pink heart small icon"></i><b>Supporter</b>
 								{{ $global.T " from <b>%s</b>." (country .country true) | html }}
 							{{ else }}
 								{{ $global.T "<b>%s</b> is a player from <b>%s</b>." .username (country .country true) | html }}
 							{{ end }}
 
-							<br>{{ $global.T "They signed up on Yozora %s." (time $user.registered_on) | html }}
+							<br>{{ $global.T "They signed up on Juyuri %s." (time $user.registered_on) | html }}
 							<br>{{ $global.T "Last seen: %s." (time $user.latest_activity) | html }}
 							<br>{{ with playstyle .play_style $global }}{{ $global.T "They play with %s." . }}{{ end }}
 						</div>

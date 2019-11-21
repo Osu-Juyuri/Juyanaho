@@ -10,13 +10,13 @@
 				window.userID = {{ .id }};
 			</script>
 			{{ if after .silence_info.end }}
-				<div class="ui error centered message">{{ $global.T "User is <b>silenced</b> for %s, expires %s." (.silence_info.reason | htmlescaper) (time .silence_info.end) | html }}</div>
+				<div class="ui error centered message">{{ $global.T "ผู้ใช้นี้ <b>โดนใบ้</b> เหตุผล %s, ปลดเวลา %s." (.silence_info.reason | htmlescaper) (time .silence_info.end) | html }}</div>
 			{{ end }}
 
 			{{ $sarah  := has .id 1193 }}
 			{{ $alicia  := has .id 1000 }}
 			{{ $catherine  := has .id 999 }}
-			
+
 			{{ $super := has .privileges 7340031 }}
 			{{ $dev  := has .privileges 11534335 }}
 			{{ $donor := has .privileges 7 }}
@@ -30,14 +30,14 @@
 				{{ $pend  := has .privileges 1048576 }}
 				{{ if and $disab $restr }}
 					{{ if $pend }}
-						<div class="ui warning centered message">{{ $global.T "User is <b>%s</b>" "pending verification" | html }}.</div>
+						<div class="ui warning centered message">{{ $global.T "ผู้ใช้นี้ <b>%s</b>" "รอการยืนยัน" | html }}.</div>
 					{{ else }}
-						<div class="ui error centered message">{{ $global.T "User is <b>%s</b>" "banned" | html }}.</div>
+						<div class="ui error centered message">{{ $global.T "ผู้ใช้นี้ <b>%s</b>" "โดนแบน" | html }}.</div>
 					{{ end }}
 				{{ else if $restr }}
-					<div class="ui error centered message">{{ $global.T "User is <b>%s</b>" "restricted" | html }}.</div>
+					<div class="ui error centered message">{{ $global.T "ผู้ใช้นี้ <b>%s</b>" "โดนสุ่มเสี่ยง" | html }}.</div>
 				{{ else if $disab }}
-					<div class="ui error centered message">{{ $global.T "User is <b>%s</b>" "locked" | html }}.</div>
+					<div class="ui error centered message">{{ $global.T "ผู้ใช้นี้ <b>%s</b>" "โดนล๊อค" | html }}.</div>
 				{{ end }}
 			{{ end }}
 			{{ with $global.Get "users/userpage?id=%.0f" .id }}
@@ -63,13 +63,13 @@
 					<div class="table element">
 						<h1 class="ui header">
 							{{ $user := . }}
-							
+
 							{{ if $super }}
 							<div class="owner">
 							{{ if $user.clan.tag}}
 								<td class="right aligned"><a href="/c/{{ $user.clan.id }}?mode=0">[{{ $user.clan.tag }}]</a></td>
 							{{ end }}
-							
+
 							{{ .username }}
 							</div>
 							{{else if $donor}}
@@ -94,7 +94,7 @@
 						{{ with bget "isOnline?id=%.0f" .id }}
 							<div class="subtitle">
 								<i class="{{ if .result }}green{{ else }}grey{{ end }} circle icon"></i>
-								{{ if .result }}{{ $global.T "Online" }}{{ else }}{{ $global.T "Offline" }}{{ end }}
+								{{ if .result }}{{ $global.T "ออนไลน์" }}{{ else }}{{ $global.T "ออฟไลน์" }}{{ end }}
 							</div>
 						{{ end }}
 					</div>
@@ -117,8 +117,8 @@
 								</a>
 							{{ end }}
 							{{ if hasAdmin $global.Context.User.Privileges }}
-								<a href="https://old.yozora.pw/index.php?p=103&id={{ $global.UserID }}"
-									target="_blank" title="Quick edit" class="ui circular mini blue icon button">
+								<a href="https://old.juyurisan.tk.index.php?p=103&id={{ $global.UserID }}"
+									target="_blank" title="แก้ผู้ใช้นี้" class="ui circular mini blue icon button">
 									<i class="folder open outline icon"></i>
 								</a>
 							{{ end }}
@@ -143,33 +143,33 @@
 						<div class="column">
 								{{if $super }}
 								{{ $global.T "<b >%s</b> " .username | html }}
-								 is an <i class="pink code small icon"></i><b>Owner</b> 
+								 is an <i class="pink code small icon"></i><b>Owner</b>
 								{{ $global.T " from <b>%s</b>." (country .country true) | html }}
 								{{else if $dev}}
 								{{ $global.T "<b>%s</b> " .username | html }}
-								 is a <i class="blue code small icon"></i><b>Developer</b> 
+								 is a <i class="blue code small icon"></i><b>Developer</b>
 								{{ $global.T " from <b>%s</b>." (country .country true) | html }}
 								{{else if $admin}}
 								{{ $global.T "<b>%s</b> " .username | html }}
-								 is an <i class="red lightning small icon"></i><b>Administrator</b> 
+								 is an <i class="red lightning small icon"></i><b>Administrator</b>
 								{{ $global.T " from <b>%s</b>." (country .country true) | html }}
 								{{else if $chatmod}}
 								{{ $global.T "<b>%s</b> " .username | html }}
-								 is a <i class="blue star small icon"></i><b>Chat Mod</b> 
+								 is a <i class="blue star small icon"></i><b>Chat Mod</b>
 								{{ $global.T " from <b>%s</b>." (country .country true) | html }}
 								{{else if $bn}}
 								{{ $global.T "<b>%s</b> " .username | html }}
-								 is a <i class="orange universal access small icon"></i><b>Nominator</b> 
+								 is a <i class="orange universal access small icon"></i><b>Nominator</b>
 								{{ $global.T " from <b>%s</b>." (country .country true) | html }}
 								{{else if $donor }}
 								{{ $global.T "<b>%s</b> " .username | html }}
-								 is a <i class="pink heart small icon"></i><b>Supporter</b> 
+								 is a <i class="pink heart small icon"></i><b>Supporter</b>
 								{{ $global.T " from <b>%s</b>." (country .country true) | html }}
 							{{ else }}
 								{{ $global.T "<b>%s</b> is a player from <b>%s</b>." .username (country .country true) | html }}
 							{{ end }}
 
-							<br>{{ $global.T "They signed up on Yozora %s." (time $user.registered_on) | html }}
+							<br>{{ $global.T "They signed up on Juyuri %s." (time $user.registered_on) | html }}
 							<br>{{ $global.T "Last seen: %s." (time $user.latest_activity) | html }}
 							<br>{{ with playstyle .play_style $global }}{{ $global.T "They play with %s." . }}{{ end }}
 						</div>

@@ -1,3 +1,4 @@
+
 {{/*###
 Handler=/
 TitleBar=Home Page
@@ -8,34 +9,164 @@ KyutGrill=homepage2.jpg
 {{ $ds := band $cf 1 }}
 {{ $   := . }}
 <div class="ui container">
-	<div class="ui center aligned segment">
-		<img src="/static/logos/circle.png">
-	</div>
-	{{ $set := systemSettings "website_home_alert" }}
-	{{ with $set.website_home_alert.String }}
-		<div class="ui warning message">
+	{{ $set := systemSettings "website_home_alert"}}
+	{{with $set.website_home_alert.String }}
+		<div class="ui info message">
+			<br>
 			{{ . | html }}
+			<br>
 		</div>
 	{{ end }}
-	{{/* Not logged in block */}}
-	{{ if not .Context.User.ID }}
-		<div class="ui segment">
-			<h1 class="ui header">{{ .T "Welcome to Yozora." }}</h1>
-			<p>
-				{{ .T "You look new here. Allow us to introduce you to what Yozora is." }}
-			</p>
-			<p>
-				{{ .T "Yozora is a private osu! server, featuring multiplayer, PP for relax, autopilot and regular osu!, leaderboards for every (submitted) map, a very active community and a development team going strong implementing new features and squashing bugs. <a href='/about'>You can check out even more features here.</a> It has also a very friendly community, and it's <a href='https://github.com/osuYozora'>open source!</a> Just so you know, <b>we currently have %s users online and %s registered users!</b>" (rediget "ripple:online_users") (rediget "ripple:registered_users") | html }}
-			</p>
-			<h3 class="ui header center aligned">{{ .T "What are you waiting for? Join Yozora! It's risk-free: you won't get your account banned on the official server if you play on Yozora.<br>You can also switch anytime between the official osu! server and Yozora!" | html }}</h3>
+	<div id="content">
+		<div id="home">
+			<link rel="stylesheet" type="text/css" href="/static/lom.css">
+			<div class="container">
+				<div class="col-lg-12">
+					<div class="main-block">
+						<div class="mirai"></div>
+						<div class="content">
+							<div class="status">
+								{{ range $key, $value := (qb "SELECT COUNT(*) FROM users WHERE privileges >= 3") }}
+								<span>
+									<span style="color: #2094ca;" class="counter-text"> {{ $value }} </span> total users
+								</span>
+								{{ end }}
+								<span style="margin-left: 16px;">
+									<span class="counter-text"> {{ rediget "ripple:online_users" }} </span> online users
+								</span>
+							</div>
+							<br>
+							<span class="text-lg">
+								Juyuri!Kaisuke
+							</span>
+							<br>
+							<span class="text-sm">
+
+								ยินดีต้อนรับสู่เซิฟไทยเซิฟแรกที่มีระบบมากมาย Juyuri! ในเว็ปนี้คุณมาสามารถจะหาข้อมูล สถานะ เกี่ยวกับเซิฟนี้ได้ครับ และสอบถามปัญหา และ อยากคุยกับ Owner ก็มาได้นะครับ ในดิสคอร์ดครับผม ^-^
+
+							</span>
+							<div class="buttons">
+								<a href="{{ if not .Context.User.ID }}/register{{ else }}/u/{{ .Context.User.ID }}{{ end }}" class="home-btn btn-key">{{ if not .Context.User.ID }} สมัครที่นี่ {{else}} ดูโปรไฟล์ {{ end }} </a>
+								<a href="{{ if not .Context.User.ID }}/switcher{{ else }}/settings{{ end }}" class="home-btn btn-how" style="margin-left: 6px;">{{ if not .Context.User.ID }} โหลด Switcher {{ else }} การตั้งค่า {{ end }}</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-	{{ else }}
-		<div class="ui segment">
-			<h1 class="ui header">{{ .T "Howdy, %s!" .Context.User.Username }}</h1>
-			<p>
-				{{ .T "Welcome back to Yozora. We currently have <b>%s online users and %s total registered users.</b> Nice day to farm PP, isn't it?" (rediget "ripple:online_users") (rediget "ripple:registered_users") | html }}
-			</p>
+	</div>
+	<br>
+	<br>
+	<div class="ui stackable three grid">
+			<div class="five wide column">
+					<div class="ui red segment">
+							<div class="ui grid">
+									<div class="four wide column">
+											<i class="user plus icon status-icon"></i>
+									</div>
+									<div class="twelve wide column">
+											<p class="status-head">{{ .T "%s" (rediget "ripple:online_users") | html }}</p>
+											<p class="status-footer">{{ .T "ผู้เล่นที่ใช้งานอยู่" }}</p>
+									</div>
+							</div>
+					</div>
+			</div>
+			<div class="five wide column">
+					<div class="ui blue segment">
+							<div class="ui grid">
+									<div class="four wide column">
+											<i class="user icon status-icon"></i>
+									</div>
+									<div class="twelve wide column">
+											<p class="status-head">{{ .T "%s" (rediget "ripple:registered_users") | html }}</p>
+											<p class="status-footer">{{ .T "ผู้เล่นที่สมัครในเซิฟนี้" }}</p>
+									</div>
+							</div>
+					</div>
+			</div>
+			<div class="six wide column">
+					<div class="ui green segment">
+							<div class="ui grid">
+									<div class="four wide column">
+											<i class="angle right icon status-icon"></i>
+									</div>
+									<div class="twelve wide column">
+											<p class="status-head">{{ .T "%s" (rediget "ripple:submitted_scores") | html }}</p>
+											<p class="status-footer">{{ .T "เพลงที่ Submit ล่าสุด" }}</p>
+									</div>
+							</div>
+					</div>
+				</div>
+				<div class="seven wide column" style="width: 31.2%!important;">
+						<div class="ui blue segment">
+								<div class="ui grid">
+										<div class="four wide column">
+									 <i class="user plus icon status-icon"></i>
+										 </div>
+							 <div class="twelve wide column">
+					 {{ range $key, $value := (qb "SELECT username FROM users WHERE privileges >=3 ORDER BY id DESC LIMIT 1") }}
+									 <p class="status-head">{{ $value }}</p>
+									 {{ end }}
+								<p class="status-footer">ผู้เล่นที่สมัครล่าสุด</p>
+							</div>
+						 </div>
+					</div>
 		</div>
-	{{ end }}
-</div>
+		<div class="eight wide column" style="width: 31.2%!important;">
+			<div class="ui yellow segment">
+			 <div class="ui grid">
+					<div class="four wide column">
+						 <i class="thumbs up icon status-icon"></i>
+					</div>
+					<div class="twelve wide column">
+						 {{ $d := (qb "SELECT ROUND(pp) AS pp, users.username, users.id FROM scores INNER JOIN users ON scores.userid = users.id WHERE scores.play_mode = 0 AND completed = 3 AND users.privileges > 2 ORDER BY pp DESC LIMIT 1") }}
+						 <p class="status-head">{{ $d.pp }}pp</p>
+						 <p class="status-head" style="font-size: 10px!important;">เล่นจาก <a href="/u/{{ $d.id }}">{{ $d.username }}</a></p>
+						 <p class="status-footer">PP ที่ Yee ที่สุดในเซิฟเวอร์</p>
+					</div>
+			 </div>
+		</div>
+	</div>
+	<div class="wide column" style="width: 37.6%!important;">
+				 <div class="ui pink segment">
+						<div class="ui grid">
+							 <div class="four wide column">
+									<i class="angle double right icon status-icon"></i>
+							 </div>
+							 <div class="twelve wide column">
+									{{ $value := (qb "SELECT ROUND(SUM(scores.pp)) AS pp FROM scores INNER JOIN users ON scores.userid = users.id WHERE scores.completed = 3 AND scores.play_mode = 0 AND users.privileges > 2") }}
+									<p class="status-head">{{ $value.pp }}</p>
+									<p class="status-footer">PP ทั้งหมดในเซิฟ</p>
+							 </div>
+						</div>
+				 </div>
+			</div>
+	</div>
+	<div class="ui stackable grid">
+			<div class="wide column">
+					<div class="ui pink segment">
+							<h3 class="ui header">{{ .T "นักโดเนทที่โหดที่สุด" }}</h3>
+							{{ with .Get "hmrapi/topdonors" }}
+									<div class="ui four column stackable grid">
+											{{ range .users }}
+													<div class="ui column">
+															<h4 class="ui image header">
+																	<img src="{{ config "AvatarURL" }}/{{ .id }}" alt="Avatar of donater {{ .id }}" class="ui small rounded image">
+																	<div class="content">
+																			<a href="/u/{{ .id }}">{{ .username }}</a>
+																			<div class="sub header">
+																					{{ $.T "หมดเวลาภายใน <b>%s</b>" (time .expiration) | html }}
+																			</div>
+																	</div>
+															</h4>
+													</div>
+											{{ end }}
+									</div>
+							{{end}}
+					</div>
+			</div>
+	</div>
+	</div>
+	<br>
+	<br>
 {{ end }}

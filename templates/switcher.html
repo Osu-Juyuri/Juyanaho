@@ -1,0 +1,42 @@
+{{/*###
+Handler=/switcher
+TitleBar=Swicher
+KyutGrill=donate2.png
+*/}}
+{{ define "tpl" }}
+{{ $global := .Context }}
+{{ $ := $ }}
+<div class="ui container">
+		<div class="ui segments">
+			<div class="ui segment">
+				<div class="ui three column divided stackable grid">
+					<div class="row">
+						<style>
+						img {
+							width: 100%;
+							height: auto;
+						}
+						</style>
+						<div class="column">
+							<h2>โหลด Juyuri!Patcher</h2>
+							<img src="/static/Patcher.png">
+							<p>วิถีใหม่ในการเชื่อมต่อเซิฟเวอร์ มันเหมือนการสร้าง Osu!V2 ขึ้นมา ไม่ได้แตะข้อมูล Osu! แน่นอน แค่เปิดโปรแกรม กด Patch มันจะสร้าง Shortcut ใหม่ เข้าปึ้บ เล่นได้เลย ไม่ต้องผ่าน Swicher</p>
+							<a href="https://juyurisan.tk/static/PatcherJuyuriServer.exe"><button tabindex="4" class="ui primary button">โหลด</button></a>
+						</div>
+						<div class="column">
+							<h2>โหลด Juyuri!Switcher</h2>
+							<img src="/static/Switcher.png">
+							<p>ก็เหมือนเดิม Switcher ที่เหมือนเซิฟๆอื่นๆ ทำเหมือนกันนั่นแหละ ไม่ต้องอะไรมาก 555</p>
+							<button tabindex="4" class="ui primary button" style="background-color: red;">ใช้ไม่ได้</button>
+						</div>
+						<div class="column">
+							<h2>เร็วๆนี้</h2>
+							<p>อาจจะมีระบบในการเชื่อมต่อเซิฟเวอร์เร็วๆนี้ อดใจรอก่อนนะ</p>
+							<button tabindex="4" class="ui primary button" style="background-color: red;">เร็วนี้</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+          {{ end }}

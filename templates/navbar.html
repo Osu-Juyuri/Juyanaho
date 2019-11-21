@@ -2,10 +2,19 @@
 {{ $isRAP   := and (hasAdmin .Context.User.Privileges) (isRAP .Path) }}
 {{ $isAdmin := hasAdmin .Context.User.Privileges }}
 {{ $ds      := band .ClientFlags 1 }}
-<div class="ui secondary fixed-height stackable white background main menu no margin bottom{{ if .DisableHH }} dropped{{ end }}" id="navbar">
+<div class="triangles-1">
+
+	<div class="ui secondary fixed-height stackable black background main menu no margin bottom  kotrik-bar" id="navbar" style="
+	    background-image: url(https://osu.gatari.pw/static/images/icons/button.svg);
+	    background-color: #5ebdff;
+	    box-shadow: -1px 2px 2px 1px rgba(0, 0, 0, 0.11);
+	    /* background-size: 25%; */
+	    position: relative;
+	    z-index: 5;
+	">
 	<div class="ui container">
 		<div class="item">
-			<b><a href="/" title="{{ .T "Home page" }}"><img class="ripple logo" src="/static/logos/text-{{ if $ds }}white{{ else }}black{{ end }}.png" alt="Yozora"></a></b>
+			<b><a href="/" title="{{ .T "Home page" }}"><img class="ripple logo" src="/static/logos/text.png" alt="osu!thailand"></a></b>
 		</div>
 		{{ if $isRAP }}
 			{{/*
@@ -16,47 +25,42 @@
 			*/}}
 		{{ else }}
 		<div class="ui dropdown item">
-			<span> Leaderboards </span>
+			<span>{{ .T "กระดานคะแนน" }}</span>
 			<div class="menu">
-				{{ navbarItem .Path (.T "Leaderboard") "/leaderboard" }}
-				{{ navbarItem .Path (.T "Relax Leaderboard") "/relaxboard" }}
-				{{ navbarItem .Path (.T "Autopilot Leaderboard") "/autoboard" }}
+				{{ navbarItem .Path (.T "Vanilla") "/leaderboard" }}
+				{{ navbarItem .Path (.T "Relax") "/relaxboard" }}
 			</div>
 		</div>
 			<div class="ui dropdown item">
-				<span>{{ .T "Help" }}</span>
+				<span>{{ .T "ช่วยเหลือ" }}</span>
 				<div class="menu">
-					{{ navbarItem .Path (.T "About") "/about" }}
-					{{ navbarItem .Path (.T "Server switcher") "/static/switcher.exe" }}
+					{{ navbarItem .Path (.T "เกี่ยวกับ") "/about" }}
+					{{ navbarItem .Path (.T "กฎ") "/doc/rules" }}
+					{{ navbarItem .Path (.T "เอกสาร") "/doc" }}
 					<div class="divider"></div>
-					{{ navbarItem .Path (.T "Chat (Discord)") .Conf.DiscordServer }}
-					{{ navbarItem .Path (.T "Contact support") "/help" }}
+					{{ navbarItem .Path (.T "ดิสคอร์ด") "https://discord.gg/sysDpeE" }}
+					{{ navbarItem .Path (.T "ช่องทางสอบถาม") "https://discord.gg/sysDpeE" }}
 				</div>
 			</div>
+			<div class="ui dropdown item">
+				<span>{{ .T "แคลน" }}</span>
+				<div class="menu">
+					{{ navbarItem .Path (.T "กระดานแคลน") "/clans?mode=0" }}
+					{{ navbarItem .Path (.T "สร้างแคลน [เร็วๆนี้]") "/" }}
+				</div>
+			</div>
+			{{ navbarItem .Path (.T "โหลดสวิตเชอร์") "/switcher" }}
 			{{ if .Context.User.Username }}
-			<div class="ui dropdown item">
-				<span>{{ .T "Beatmaps" }}</span>
-				<div class="menu">
-						{{ navbarItem .Path (.T "Listing") "/beatmaps" }}
-					{{ navbarItem .Path (.T "Request beatmap ranking") "/beatmaps/rank_request" }}
-				</div>
-			</div>
-			<div class="ui dropdown item">
-					<span>{{ .T "Clans" }}</span>
-						<div class="menu">
-							{{ navbarItem .Path (.T "Create Clan") "/clans/create" }}
-						</div>
-				</div>
-			{{ else }}
-			<div class="ui dropdown item">
-				<span>{{ .T "Beatmaps" }}</span>
-				<div class="menu">
-						{{ navbarItem .Path (.T "Listing") "/beatmaps" }}
-				</div>
-			</div>
 			{{ end }}
-			{{ navbarItem .Path (.T "Donate" | printf "<i class=\"red heart icon\"></i>%s") "/donate" }}
-			{{ if $isAdmin }}{{ navbarItem .Path (.T "Admin" | printf "<b>%s</b>") "https://old.yozora.pw/p/100" }}{{ end }}
+			<div class="ui dropdown item">
+				<span>{{ .T "อยากช่วย?" }}</span>
+				<div class="menu">
+					{{ navbarItem .Path (.T "BAT [ยังไม่รับสมัคร]") "" }}
+					{{ navbarItem .Path (.T "Replay Recorder [ยังไม่รับสมัคร]") "/" }}
+					{{ navbarItem .Path (.T "Replay Checker [ยังไม่รับสมัคร]") "/" }}
+				</div>
+			</div>
+			{{ if $isAdmin }}{{ navbarItem .Path (.T "JAP" | printf "<b>%s</b>") "https://old.juyurisan.tk" }}{{ end }}
 		{{ end }}
 		<div class="firetrucking-right-menu">
 			<div class="item">
@@ -70,19 +74,25 @@
 			{{ if .Context.User.Username }}
 				<div class="ui dropdown item">
 					<img class="ui avatar image" src="{{ config "AvatarURL" }}/{{ .Context.User.ID }}">
-					<span>{{ .Context.User.Username }}</span>
 					<div class="menu">
-						{{ navbarItem .Path (.T "Profile") (printf "/u/%d" .Context.User.ID) }}
-						{{ navbarItem .Path (.T "Friends") "/friends" }}
-						{{ navbarItem .Path (.T "Settings") "/settings" }}
-						{{ navbarItem .Path (.T "Log out") (printf "/logout?k=%s" (.Session.Get "logout")) }}
+						{{ navbarItem .Path (.T "โปรไฟล์") (printf "/u/%d" .Context.User.ID) }}
+						{{ navbarItem .Path (.T "เพื่อน (บัค)") "/friends" }}
+						{{ navbarItem .Path (.T "การตั้งค่า") "/settings" }}
+						{{ navbarItem .Path (.T "ออกจากระบบ") (printf "/logout?k=%s" (.Session.Get "logout")) }}
 					</div>
 				</div>
 			{{ else }}
-				{{ navbarItem .Path (.T "Log in") "/login" }}
-				{{ navbarItem .Path (.T "Register") "/register" }}
+			<div class="ui dropdown item">
+				<img class="ui avatar image" src="{{ config "AvatarURL" }}/0">
+				<div class="menu">
+					{{ navbarItem .Path (.T "เข้าสู่ระบบ") "/login" }}
+					{{ navbarItem .Path (.T "สมัคร") "/register" }}
+				</div>
+			</div>
 			{{ end }}
 		</div>
 	</div>
 </div>
+</div>
+
 {{ end }}

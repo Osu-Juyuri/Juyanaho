@@ -8,7 +8,7 @@ KyutGrill=team2.jpg
 <div class="ui container">
 	<div class="ui segments">
 		<div class="ui center aligned segment">
-			<h3>{{ .T "This is a list of the wonderful people who keep Yozora up and running and deal with its community." }}</h3>
+			<h3>{{ .T "This is a list of the wonderful people who keep Juyuri up and running and deal with its community." }}</h3>
 		</div>
 		<div class="ui center aligned segment">
 			<h1 class="ui heading">{{ .T "Owners" }}</h1>
@@ -22,7 +22,7 @@ KyutGrill=team2.jpg
 			<h1 class="ui heading">{{ .T "Community Managers" }}</h1>
 			<p>
 				{{ .T "Community Managers deal with bans, silences, name changes and pretty much everything that has to do with the community." }}<br>
-				{{ .T "They take care of our Discord server and reply to emails sent to the support services (email and support@yozora.pw). Community Managers have a red name in the in-game chat." | html }}
+				{{ .T "They take care of our Discord server and reply to emails sent to the support services (email and support@Juyuri.pw). Community Managers have a red name in the in-game chat." | html }}
 			</p>
 			{{ template "userGroup" (.Get "badges/members?id=%d" 10) }}
 		</div>
@@ -44,7 +44,7 @@ KyutGrill=team2.jpg
 	<div class="ui segments">
 		<div class="ui center aligned segment">
 			<h1 class="ui heading">{{ .T "Special thanks" }}</h1>
-			<p>{{ .T "Here's a list of people who helped with Yozora." }}</p>
+			<p>{{ .T "Here's a list of people who helped with Juyuri." }}</p>
 		</div>
 		<div class="ui segment">
 			<ul class="ui list">
@@ -67,13 +67,13 @@ KyutGrill=team2.jpg
 				<li>
 					{{ .T "<b>Kotrik</b>, for helping out with some features." | html }}.
 				</li>
-				<li>{{ .T "<b>Jacksonisiah</b>, for designing the Yozora logo." | html }}</li>
-				<li>{{ .T "<b><a id='everyone' class='clickable'>Everyone</a></b> who has supported the Yozora project by donating or inviting other people." | html }}</li>
+				<li>{{ .T "<b>Jacksonisiah</b>, for designing the Juyuri logo." | html }}</li>
+				<li>{{ .T "<b><a id='everyone' class='clickable'>Everyone</a></b> who has supported the Juyuri project by donating or inviting other people." | html }}</li>
 			</ul>
 		</div>
 	</div>
 	{{ $ := . }}
-	{{ .T "Looking for how you should contact our team? Check out <a href='mailto:support@yozora.pw'>this email</a>." | html }}
+	{{ .T "Looking for how you should contact our team? Check out <a href='mailto:support@Juyuri.pw'>this email</a>." | html }}
 	<div class="ui modal">
 		<div class="header"><h2 class="ui header">{{ .T "They told me these are very cool people." }}</h2></div>
 		{{ with .Get "users?sort=donor_expire,desc&l=52" }}
